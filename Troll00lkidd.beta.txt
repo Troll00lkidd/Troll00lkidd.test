@@ -1,0 +1,35 @@
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/7yhx/kwargs_Ui_Library/main/source.lua"))()
+
+local UI = Lib:Create{
+   Theme = "Dark", -- or any other theme
+   Size = UDim2.new(0, 555, 0, 400) -- default
+}
+
+local Main = UI:Tab{
+   Name = "Inicio hehe"
+}
+
+local Divider = Main:Divider{
+   Name = "inicio hehe shit"
+}
+
+local QuitDivider = Main:Divider{
+   Name = "Sair"
+}
+
+-- Script para spawnar decals nas partes do corpo de um jogador
+local function spawnDecalsOnPlayer(player)
+    for _, part in pairs(player.Character:GetChildren()) do
+        if part:IsA("MeshPart") or part:IsA("Part") then  -- Verifica se é uma parte do personagem
+            local decal = Instance.new("Decal")
+            decal.Texture = "rbxassetid://130201323133980"  -- ID de imagem maliciosa
+            decal.Parent = part  -- Aplica o decal na parte
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        spawnDecalsOnPlayer(player)  -- Gera decals assim que o personagem for adicionado
+    end)
+end)
